@@ -6,8 +6,9 @@ import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/utils/introspection/ERC165Checker.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
 
-contract AuctionContract is AccessControl {
+contract AuctionContract is AccessControl, IERC721Receiver {
     using ERC165Checker for address;
     using Counters for Counters.Counter;
 
@@ -27,10 +28,6 @@ contract AuctionContract is AccessControl {
      */
     function isERC721(address _nftAddress) internal view returns (bool) {
         return _nftAddress.supportsInterface(IID_IERC721);
-    }
-
-    function isERC20(address _tokenAddress) internal view returns (bool) {
-        return _tokenAddress.supportsInterface(IID_IERC20);
     }
 
     /// Structures
@@ -96,7 +93,6 @@ contract AuctionContract is AccessControl {
     function setAllowedToken(
         address _erc20Token
     ) external onlyRole(ADMIN_ROLE) {
-        require(isERC20(_erc20Token), "Token is not valid ERC20");
         allowedTokens[_erc20Token] = true;
 
         emit AllowedTokenAdded(_erc20Token, msg.sender);
@@ -163,7 +159,7 @@ contract AuctionContract is AccessControl {
         );
 
         require(
-            _endTime < block.timestamp,
+            _endTime > block.timestamp,
             "endTime must be greater than current block.timestamp"
         );
 
@@ -202,7 +198,7 @@ contract AuctionContract is AccessControl {
         require(auction.owner != address(0), "Auction doesn't exists yet !!");
 
         require(
-            auction.startingPrice >= _amount,
+            auction.startingPrice <= _amount,
             "Can't bid less than the starting price!!"
         );
 
@@ -310,8 +306,7 @@ contract AuctionContract is AccessControl {
             );
 
             // Transfer ERC20 Tokens to the Auction Owner
-            bool success = IERC20(auction.tokenAddress).transferFrom(
-                address(this),
+            bool success = IERC20(auction.tokenAddress).transfer(
                 auction.owner,
                 highestBid.amount
             );
@@ -357,8 +352,7 @@ contract AuctionContract is AccessControl {
 
         if (auction.typeOfAuction == TypeOfAuction.TOKEN) {
             // Transfer ERC20 Tokens
-            bool success = IERC20(auction.tokenAddress).transferFrom(
-                address(this),
+            bool success = IERC20(auction.tokenAddress).transfer(
                 bid.bidder,
                 bid.amount
             );
@@ -422,5 +416,14 @@ contract AuctionContract is AccessControl {
         auctionIdToBidsCounter[_auctionId] = lastAuctionBidIndex + 1;
 
         emit BidCreated(_auctionId, _bidder, _amount);
+    }
+
+    function onERC721Received(
+        address,
+        address,
+        uint256,
+        bytes calldata
+    ) external pure returns (bytes4) {
+        return IERC721Receiver.onERC721Received.selector;
     }
 }

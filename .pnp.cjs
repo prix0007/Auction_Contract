@@ -39,7 +39,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typechain/ethers-v5", "virtual:42ef3ceaf08ddf74526db939ecd4e5378e8506d32fd9e4dba8865ec8b9f64d136a5904f1e351542f4072c5035fc326f285298baedecbb0e99cbbba30fab484f0#npm:10.2.0"],\
             ["@typechain/hardhat", "virtual:42ef3ceaf08ddf74526db939ecd4e5378e8506d32fd9e4dba8865ec8b9f64d136a5904f1e351542f4072c5035fc326f285298baedecbb0e99cbbba30fab484f0#npm:6.1.5"],\
             ["@types/chai", "npm:4.3.4"],\
-            ["@types/mocha", "npm:9.1.1"],\
+            ["@types/mocha", "npm:10.0.1"],\
             ["@types/node", "npm:18.11.17"],\
             ["chai", "npm:4.3.7"],\
             ["dotenv", "npm:16.0.3"],\
@@ -973,7 +973,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/ethersproject__providers", null],\
             ["@types/hardhat", null],\
             ["@types/hardhat-gas-reporter", null],\
-            ["@types/mocha", "npm:9.1.1"],\
+            ["@types/mocha", "npm:10.0.1"],\
             ["@types/node", "npm:18.11.17"],\
             ["@types/nomicfoundation__hardhat-chai-matchers", null],\
             ["@types/nomicfoundation__hardhat-network-helpers", null],\
@@ -1708,10 +1708,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@types/mocha", [\
-        ["npm:9.1.1", {\
-          "packageLocation": "./.yarn/cache/@types-mocha-npm-9.1.1-9646576ed0-516077c0ac.zip/node_modules/@types/mocha/",\
+        ["npm:10.0.1", {\
+          "packageLocation": "./.yarn/cache/@types-mocha-npm-10.0.1-7c94e9e170-224ea9fce7.zip/node_modules/@types/mocha/",\
           "packageDependencies": [\
-            ["@types/mocha", "npm:9.1.1"]\
+            ["@types/mocha", "npm:10.0.1"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -1952,7 +1952,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@typechain/ethers-v5", "virtual:42ef3ceaf08ddf74526db939ecd4e5378e8506d32fd9e4dba8865ec8b9f64d136a5904f1e351542f4072c5035fc326f285298baedecbb0e99cbbba30fab484f0#npm:10.2.0"],\
             ["@typechain/hardhat", "virtual:42ef3ceaf08ddf74526db939ecd4e5378e8506d32fd9e4dba8865ec8b9f64d136a5904f1e351542f4072c5035fc326f285298baedecbb0e99cbbba30fab484f0#npm:6.1.5"],\
             ["@types/chai", "npm:4.3.4"],\
-            ["@types/mocha", "npm:9.1.1"],\
+            ["@types/mocha", "npm:10.0.1"],\
             ["@types/node", "npm:18.11.17"],\
             ["chai", "npm:4.3.7"],\
             ["dotenv", "npm:16.0.3"],\
